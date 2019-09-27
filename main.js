@@ -38,7 +38,6 @@ inputUAH.addEventListener('input', () => {
 inputUSD.addEventListener('input', () => {
     let request = new XMLHttpRequest();
     request.open('GET', 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5', true);
-    //request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
     request.send();
     request.addEventListener('readystatechange', function () {
         if (request.readyState === 4 && request.status == 200) {
@@ -49,4 +48,11 @@ inputUSD.addEventListener('input', () => {
             inputUAH.value = "Error";
         }
     });
+});
+
+document.addEventListener('keydown', function(event) {
+    if (event.code == 'Backspace') {
+        inputUAH.value = "";
+        inputUSD.value = "";
+    }
 });
